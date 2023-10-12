@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html> <head> <style>
+<html> <head> 
+    <title>My Merger</title>
+  <style>
     .flex-container {
       display: flex;  flex-direction:row;
       background-color: red;
   }
 
-.flex-container > div {  /*div children of the flex container*/
+.flex-container > div {  
   background-color: #f1f1f1; 
   margin: 10px;  padding: 20px;  font-size: 30px;
 }
 
-/* Responsive layout */
 @media (max-width: 600px) { 
 	 .flex-container{
 		 flex-direction:column;
@@ -18,8 +19,6 @@
 	  }
 	}
 </style></head>
-
-
 
 <body>
     <h2>Sai Vamshi Krishna Gajji build a merger</h2>
@@ -31,5 +30,35 @@
 		</div>
 
 		<input type ="button" id ="addEndButton"  value ="Add end">
+    <input type ="button" id ="addFrontButton"  value ="Add Front">
+    <input type ="button" id ="removeButton"  value ="Remove">
 </body>
+<script>
+  document.getElementById("addEndButton").addEventListener("click", function () {
+  var inputValue = document.getElementById("textInput").value;
+  var newDiv = document.createElement("div");
+  newDiv.innerHTML = inputValue;
+  newDiv.className = "merger";
+  document.querySelector(".flex-container").appendChild(newDiv);
+});
+
+  document.getElementById("removeButton").addEventListener("click", function () {
+     
+      var mergerItems = document.getElementsByClassName("merger");
+      var length = mergerItems.length;
+      if (length > 0) {
+          var middleIndex = Math.floor(length / 2);
+          mergerItems[middleIndex].remove();
+      }
+  });
+
+  document.getElementById("addFrontButton").addEventListener("click", function () {
+      var inputValue = document.getElementById("textInput").value;
+      var newDiv = document.createElement("div");
+      newDiv.innerHTML = inputValue;
+      newDiv.className = "merger";
+      var container = document.querySelector(".flex-container");
+      container.insertBefore(newDiv, container.firstChild);
+  });
+</script>
 </html>	
